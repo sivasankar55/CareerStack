@@ -1,6 +1,6 @@
 import express from "express";
-import { protectRoute } from "../middleware/auth.middleware";
-import { getFeedPosts,createComment, createPost, deletePost, getPostById, likePost } from "../controllers/post.controller";
+import { protectRoute } from "../middleware/auth.middleware.js";
+import { getFeedPosts,createComment, createPost, deletePost, getPostById, likePost } from "../controllers/post.controller.js";
 
 const router = express.Router();
 
