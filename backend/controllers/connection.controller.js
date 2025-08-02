@@ -1,6 +1,6 @@
-import User from "../models/user.model";
-import ConnectionRequest from "../models/connection.model";
-import { sendConnectionAcceptedEmail } from "../emails/emailHandlers";
+import User from "../models/user.model.js";
+import ConnectionRequest from "../models/connection.model.js";
+import { sendConnectionAcceptedEmail } from "../emails/emailHandlers.js";
 
 export const sendConnectionRequest = async(req,res) => {
     try {
@@ -136,11 +136,11 @@ export const getConnectionRequests = async (req,res) => {
     }
 };
 
-export const getConnections = async (req,res) => {
+export const getUserConnections = async (req,res) => {
     try {
         const userId = req.user._id;
 
-        const user = await User.findById(userId).populate("connections", "name username profilePicture headline connectiojns");
+        const user = await User.findById(userId).populate("connections", "name username profilePicture headline connections");
 
         res.json(user.connections);
     } catch (error) {
