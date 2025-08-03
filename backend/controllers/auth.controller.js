@@ -92,7 +92,7 @@ export const login = async(req, res) => {
 
 
 export const logout = (req, res) => {
-    res.clearCookies("jwt-linkedin");
+    res.clearCookie("jwt-linkedin");
     res.json({message:"Logout successful"});
 };
 
