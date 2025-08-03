@@ -1,6 +1,6 @@
 
 const LoginPage = () => {
-    return <div>
+    return <div className="bg-white min-h-screen">
         LoginPage
     </div>
 }

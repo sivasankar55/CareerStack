@@ -25,7 +25,7 @@ function App() {
     }
   });
 
-  if(isLoading) return null;
+  if(isLoading) return null
  
   return (
   <Layout>

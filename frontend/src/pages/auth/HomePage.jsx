@@ -1,6 +1,6 @@
 
 const HomePage = () => {
-    return <div>
+    return <div className="bg-white min-h-screen">
         HomePage
     </div>
 } 
