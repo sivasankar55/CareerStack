@@ -1,10 +1,10 @@
 
 import { Navigate, Route, Routes } from 'react-router-dom'
-import './App.css'
+
 import Layout from './components/layout/Layout'
 import SignUpPage from './pages/auth/SignUpPage';
 import LoginPage from './pages/auth/LoginPage';
-import HomePage from './pages/auth/HomePage';
+import HomePage from './pages/HomePage';
 import toast, { Toaster } from 'react-hot-toast';
 import { useQuery } from '@tanstack/react-query';
 import { axiosInstance } from './lib/axios';

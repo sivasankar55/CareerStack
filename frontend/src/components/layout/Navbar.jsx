@@ -4,7 +4,8 @@ import {Link} from 'react-router-dom'
 import {Bell,Home,LogOut,Users,User} from 'lucide-react';
 const Navbar = () => {
 
-  const {data:authUser} = useQuery({ queryKey: ["authUser"] });
+  const {data:authUser} = useQuery({ queryKey: ["authUser"], 
+  });
   const queryClient = useQueryClient();
 
   const {data:notifications} = useQuery({
