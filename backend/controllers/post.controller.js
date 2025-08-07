@@ -10,7 +10,7 @@ export const getFeedPosts =async (req, res) => {
 
         if(!user) return res.status(404).json({error: "User not found"});
 
-        const posts = await Post.find({author:{$in:req.user.connections}}).populate("author","name username profilePicture headline")
+        const posts = await Post.find({author:{$in:[...req.user.connections, userId]}}).populate("author","name username profilePicture headline")
         .populate("comments.user", "name profilePicture")
         .sort({createdAt:-1}) // to get latest posts
         
@@ -53,7 +53,7 @@ export const createPost = async (req,res) => {
 
 export const deletePost = async(req,res) => {
     try {
-        const postId = req.params.postId;
+        const postId = req.params.id;
         const userId = req.user._id;
 
         const post  = await Post.findById(postId);
@@ -146,8 +146,8 @@ export const createComment = async(req,res) => {
 export const likePost = async(req,res) => {
     try{
        const postId = req.params.id;
-       const userId = req.user._id;
        const post  = await Post.findById(postId);
+       const userId = req.user._id;
 
        if(post.likes.includes(userId)) {
         post.likes = post.likes.filter((id) => id.toString() !== userId.toString());
@@ -165,6 +165,8 @@ export const likePost = async(req,res) => {
             await newNotification.save();
         }
        }
+
+       await post.save();
        res.status(200).json(post);
     }catch(error){
         console.error("Error in likePost controller:", error);
