@@ -2,7 +2,7 @@ import Post from "../models/post.model.js";
 import User from "../models/user.model.js";
 import Notification from "../models/notification.model.js";
 import cloudinary from "../lib/cloudinary.js";
-
+import { sendCommentNotificationEmail } from "../emails/emailHandlers.js";
 export const getFeedPosts =async (req, res) => {
     try {
         const userId = req.user._id;
@@ -81,7 +81,7 @@ export const deletePost = async(req,res) => {
 
 export const getPostById = async (req,res) => {
     try {
-        const postId = req.params.postId;
+        const postId = req.params.id;
         const post = await Post.findById(postId)
         .populate("author","name username profilePicture headline")
         .populate("comments.user","name profilePicture");
